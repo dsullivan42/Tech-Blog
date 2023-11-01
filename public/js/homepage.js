@@ -3,7 +3,7 @@ const blogpostFormHandler = async (event) => {
 
     const title = document.querySelector('#blogpost-title').value.trim();
     const content = document.querySelector('#blogpost-content').value.trim();
-
+    //if there is a title and content, then send the title and content to the server
     if (title && content) {
         const response = await fetch('/api/blogposts', {
             method: 'POST',
@@ -18,7 +18,7 @@ const blogpostFormHandler = async (event) => {
         }
     }
 };
-
+// if the user presses the delete button, then delete the blogpost
 const deleteBlogpostHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');

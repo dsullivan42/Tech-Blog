@@ -3,7 +3,7 @@ const commentsFormHandler = async (event) => {
 
     const comment = document.querySelector('#comment').value.trim();
     const blogpost_id = document.querySelector('#blogpost_id').value.trim();
-
+    //if there is a comment and a blogpost_id, then send the comment and blogpost_id to the server
     if (comment && blogpost_id) {
         const response = await fetch('/api/comments', {
             method: 'POST',

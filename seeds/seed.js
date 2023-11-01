@@ -12,7 +12,7 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
-
+// for the blogpost data, we will need to create a random user_id to associate with each blogpost
   for (const blogpost of blogpostData) {
     await BlogPost.create({
       ...blogpost,
@@ -23,6 +23,7 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
+  // for the comments data, we will need to create a random user_id to associate with each comment
     for (const comment of comments) {
         await Comments.create({
         ...comment,

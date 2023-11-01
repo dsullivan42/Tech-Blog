@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, BlogPost, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
-
+// GET all blogposts
 router.get('/', async (req, res) => {
     try {
         const blogpostData = await BlogPost.findAll({
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
     });
-
+// GET a single blogpost
 router.get('/Blogpost/:id', async (req, res) => {
     try {
         const blogpostData = await BlogPost.findByPk(req.params.id, {
