@@ -1,7 +1,43 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, BlogPost, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
+
+router.get('/', async (req, res) => {
+    try {
+        const blogpostData = await BlogPost.findAll({
+        include: [
+            {
+            model: User,
+            attributes: ['name'],
+            },
+        ],
+        });
+        res.status(200).json(blogpostData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+    });
+
+router.get('/Blogpost/:id', async (req, res) => {
+    try {
+        const blogpostData = await BlogPost.findByPk(req.params.id, {
+        include: [
+            {
+            model: User,
+            attributes: ['name'],
+            },
+        ],
+        });
+
+        if (!blogpostData) {
+        res.status(404).json({ message: 'No blogpost found with this id!' });
+        return;
+        }
+
+        res.status(200).json(blogpostData);
+    }
+});
 // Prevent non logged in users from viewing the homepage
 router.get('/', withAuth, async (req, res) => {
   try {

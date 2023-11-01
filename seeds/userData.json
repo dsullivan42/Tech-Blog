@@ -1,4 +1,9 @@
 [
-
+    {
+        "id": 1,
+        "name": "John Doe",
+        "email": "ok@gmail.com",
+        "password": "123456"
+    }
   ]
   
